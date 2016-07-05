@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="MapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeCoercerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ArgMap\ArgMap.csproj">
