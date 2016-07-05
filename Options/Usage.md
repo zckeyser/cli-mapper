@@ -38,3 +38,17 @@ options.Double == 1.1;
 options.Long == 2147483648L;
 options.Flag == true;
 ```
+
+## Packing with an alternate prefix
+```csharp
+string[] args = {"/string", "foo", "/bool", "true", "/int", "1", "/double", "1.1", "/long", "2147483648", "/flag"};
+
+Dictionary<string, object> map = Mapper.Map(args, "/");
+
+map["string"] == "foo";
+map["bool"] == true;
+map["int"] == 1;
+map["double"] == 1.1;
+map["long"] == 2147483648L;
+map["flag"] == true;
+```

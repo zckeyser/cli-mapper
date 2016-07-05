@@ -130,6 +130,41 @@ namespace Test
             Assert.IsTrue(mapped.Flag);
         }
 
+	    [TestMethod]
+	    public void Mapper_MapTo_UsesAliases()
+	    {
+			args.Add("--s");
+			args.Add("foo");
+			args.Add("--i");
+			args.Add("1");
+			args.Add("--l");
+			args.Add("123456789");
+			args.Add("--d");
+			args.Add("3.14");
+			args.Add("--b");
+			args.Add("true");
+			args.Add("--f");
+
+			var aliases = new Dictionary<string, string>
+			{
+				{"s", "String"},
+				{"i", "Integer"},
+				{"l", "Long"},
+				{"d", "Double"},
+				{"b", "Boolean"},
+				{"f", "Flag"}
+			};
+
+			var mapped = Mapper.MapTo(args, mappingType, aliases) as TestOptions;
+
+			Assert.AreEqual("foo", mapped.String);
+			Assert.AreEqual(1, mapped.Integer);
+			Assert.AreEqual(123456789, mapped.Long);
+			Assert.AreEqual(3.14, mapped.Double);
+			Assert.IsTrue(mapped.Boolean);
+			Assert.IsTrue(mapped.Flag);
+	    }
+
         [TestMethod]
         public void Mapper_MapTo_IgnoresBadKeys()
         {
