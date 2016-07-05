@@ -10,6 +10,7 @@
     <projectUrl>https://github.com/zckeyser/cli-mapper</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Packs program arguments into a map or object for easy usage</description>
+    <summary>Look at the project site to see usage documentation</summary>
     <releaseNotes>Initial publish</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>cli args arguments packer console</tags>
