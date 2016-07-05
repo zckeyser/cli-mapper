@@ -1,4 +1,8 @@
-﻿namespace ArgMap
+﻿using System;
+using System.ComponentModel;
+using System.Reflection;
+
+namespace ArgMap
 {
     public class TypeCoercer
     {
@@ -26,6 +30,35 @@
         private static bool IsIntegerValue(double d)
         {
             return d % 1 == 0;
+        }
+
+        public object CoerceTo(string s, Type t, out bool success)
+        {
+            var converter = TypeDescriptor.GetConverter(t);
+
+            // see if we can convert this type from a string
+            if(converter != null)
+            {
+                // if we can, give it a try
+                try
+                {
+                    success = true;
+                    var value = converter.ConvertFromString(s);
+                    return value;
+                }
+                catch (Exception)
+                {
+                    // if the parse fails return null
+                    success = false;
+                    return null;
+                }
+            }
+            else
+            {
+                // no converter available to parse the value
+                success = false;
+                return null;
+            }
         }
     }
 }

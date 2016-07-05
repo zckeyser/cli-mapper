@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Test
 {
     [TestClass]
-    public class MapperTest
+    public class MapTest
     {
         List<string> args;
 
