@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Reflection;
 
-namespace ArgMap
+namespace Options
 {
     public class TypeCoercer
     {
@@ -29,7 +28,7 @@ namespace ArgMap
 
         private static bool IsIntegerValue(double d)
         {
-            return d % 1 == 0;
+            return Math.Abs(d % 1) < .00000001;
         }
 
         public object CoerceTo(string s, Type t, out bool success)

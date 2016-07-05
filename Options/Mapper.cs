@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ArgMap
+namespace Options
 {
     public static class Mapper
     {
