@@ -1,4 +1,5 @@
-﻿using Options;
+﻿using System;
+using Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -7,21 +8,18 @@ namespace Test
     [TestClass]
     public class MapTest
     {
-        List<string> args;
+	    private string[] args;
 
         [TestInitialize]
         public void Initialize()
         {
-            args = new List<string>();
+            args = new string[0];
         }
 
         [TestMethod]
         public void Mapper_Map_AllStrings()
         {
-            args.Add("--a");
-            args.Add("foo");
-            args.Add("--b");
-            args.Add("bar");
+	        args = new[] {"--a", "foo", "--b", "bar"};
 
             var map = Mapper.Map(args);
 
@@ -35,10 +33,7 @@ namespace Test
         [TestMethod]
         public void Mapper_Map_AllBooleans()
         {
-            args.Add("--a");
-            args.Add("true");
-            args.Add("--b");
-            args.Add("false");
+			args = new[] { "--a", "true", "--b", "false" };
 
             var map = Mapper.Map(args);
 
@@ -52,10 +47,7 @@ namespace Test
         [TestMethod]
         public void Mapper_Map_AllInts()
         {
-            args.Add("--a");
-            args.Add("1");
-            args.Add("--b");
-            args.Add("2");
+			args = new[] { "--a", "1", "--b", "2" };
 
             var map = Mapper.Map(args);
 
@@ -69,10 +61,7 @@ namespace Test
         [TestMethod]
         public void Mapper_Map_AllDoubles()
         {
-            args.Add("--a");
-            args.Add("1.1");
-            args.Add("--b");
-            args.Add("2.2");
+			args = new[] { "--a", "1.1", "--b", "2.2" };
 
             var map = Mapper.Map(args);
 
@@ -89,10 +78,7 @@ namespace Test
             long a = (long)int.MaxValue + 1;
             long b = (long)int.MaxValue + 2;
 
-            args.Add("--a");
-            args.Add(a.ToString());
-            args.Add("--b");
-            args.Add(b.ToString());
+			args = new[] { "--a", a.ToString(), "--b", b.ToString() };
 
             var map = Mapper.Map(args);
 
@@ -107,16 +93,8 @@ namespace Test
         public void Mapper_Map_MixedTypes()
         {
             long e = (long)int.MaxValue + 1;
-            args.Add("--a");
-            args.Add("foo");
-            args.Add("--b");
-            args.Add("true");
-            args.Add("--c");
-            args.Add("1");
-            args.Add("--d");
-            args.Add("1.1");
-            args.Add("--e");
-            args.Add(e.ToString());
+
+	        args = new[] { "--a", "foo", "--b", "true", "--c", "1", "--d", "1.1", "--e", e.ToString() };
 
             var map = Mapper.Map(args);
 
@@ -139,10 +117,7 @@ namespace Test
         [TestMethod]
         public void Mapper_Map_AlternatePrefix()
         {
-            args.Add("_a");
-            args.Add("1");
-            args.Add("_b");
-            args.Add("2");
+	        args = new[] { "_a", "1", "_b", "2" };
 
             var map = Mapper.Map(args, "_");
 
