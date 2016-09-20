@@ -9,7 +9,7 @@ namespace Test
     public class MapToTest
     {
         private static readonly Type mappingType = typeof(TestOptions);
-        private List<string> args;
+        private string[] args;
 
         private class TestOptions
         {
@@ -27,10 +27,7 @@ namespace Test
         }
 
         [TestInitialize]
-        public void Initialize()
-        {
-            args = new List<string>();
-        }
+        public void Initialize() { args = new string[0]; }
 
         [TestMethod]
         public void Mapper_MapTo_ReturnsObjectOfCorrectType()
@@ -43,8 +40,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_StringField()
         {
-            args.Add("--String");
-            args.Add("foo");
+			args = new[] { "--String", "foo" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -54,8 +50,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_IntegerField()
         {
-            args.Add("--Integer");
-            args.Add("1");
+	        args = new[] { "--Integer", "1" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -65,8 +60,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_LongField()
         {
-            args.Add("--Long");
-            args.Add("123456789");
+	        args = new[] { "--Long", "123456789" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -76,8 +70,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_DoubleField()
         {
-            args.Add("--Double");
-            args.Add("3.14");
+	        args = new[] { "--Double", "3.14" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -87,8 +80,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_BooleanField_KeyValueStyle()
         {
-            args.Add("--Boolean");
-            args.Add("true");
+			args = new[] { "--Boolean", "true" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -98,7 +90,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_BooleanField_FlagStyle()
         {
-            args.Add("--Flag");
+	        args = new[] { "--Flag" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -108,17 +100,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_AllValues()
         {
-            args.Add("--String");
-            args.Add("foo");
-            args.Add("--Integer");
-            args.Add("1");
-            args.Add("--Long");
-            args.Add("123456789");
-            args.Add("--Double");
-            args.Add("3.14");
-            args.Add("--Boolean");
-            args.Add("true");
-            args.Add("--Flag");
+	        args = new[] { "--String", "foo", "--Integer", "1", "--Long", "123456789", "--Double", "3.14", "--Boolean", "true", "--Flag" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -133,17 +115,7 @@ namespace Test
 	    [TestMethod]
 	    public void Mapper_MapTo_UsesAliases()
 	    {
-			args.Add("--s");
-			args.Add("foo");
-			args.Add("--i");
-			args.Add("1");
-			args.Add("--l");
-			args.Add("123456789");
-			args.Add("--d");
-			args.Add("3.14");
-			args.Add("--b");
-			args.Add("true");
-			args.Add("--f");
+			args = new[] { "--s", "foo", "--i", "1", "--l", "123456789", "--d", "3.14", "--b", "true", "--f" };
 
 			var aliases = new Dictionary<string, string>
 			{
@@ -168,8 +140,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_IgnoresBadKeys()
         {
-            args.Add("--Foo");
-            args.Add("bar");
+            args = new[] { "--Foo", "bar" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -179,8 +150,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_IgnoresBadValues()
         {
-            args.Add("--Boolean");
-            args.Add("1234");
+	        args = new[] { "--Boolean", "1234" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -191,7 +161,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_IgnoresBadFlags()
         {
-            args.Add("--FooBar");
+	        args = new[] { "--FooBar" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
@@ -201,9 +171,7 @@ namespace Test
         [TestMethod]
         public void Mapper_MapTo_IgnoresUnPrefixedFlags()
         {
-            args.Add("Boolean");
-            args.Add("true");
-            args.Add("Flag");
+	        args = new[] { "Boolean", "true", "Flag" };
 
             var mapped = Mapper.MapTo(args, mappingType) as TestOptions;
 
