@@ -41,4 +41,25 @@ options.Integer == 1;
 options.Double == 1.1;
 options.Long == 2147483648L;
 options.Flag == true;
+
+// mapping to an object using aliases
+args = {"--s", "foo", "--b", "true", "--i", "1", "--d", "1.1", "--l", "2147483648", "--f"}
+Dictionary<string, string> aliases = new Dictionary<string, string>() 
+    {
+        { "s", "String" },
+        { "b", "Boolean" },
+        { "i", "Integer" },
+        { "d", "Double" },
+        { "l", "Long" }
+        { "f", "Flag" }
+    };
+
+options = Mapper.MapTo(args, typeof(TestOptions), aliases);
+
+options.String == "foo";
+options.Boolean == true;
+options.Integer == 1;
+options.Double == 1.1;
+options.Long == 2147483648L;
+options.Flag == true;
 ```
