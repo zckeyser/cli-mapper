@@ -127,7 +127,7 @@ namespace Test
 				{"f", "Flag"}
 			};
 
-			var mapped = Mapper.MapTo(args, mappingType, aliases) as TestOptions;
+			var mapped = Mapper.MapTo(args, mappingType, aliases: aliases) as TestOptions;
 
 			Assert.AreEqual("foo", mapped.String);
 			Assert.AreEqual(1, mapped.Integer);
@@ -136,6 +136,46 @@ namespace Test
 			Assert.IsTrue(mapped.Boolean);
 			Assert.IsTrue(mapped.Flag);
 	    }
+
+        [TestMethod]
+        public void Mapper_MapTo_Generic_NoAliases()
+        {
+            args = new[] { "--String", "foo", "--Integer", "1", "--Long", "123456789", "--Double", "3.14", "--Boolean", "true", "--Flag" };
+
+            var mapped = Mapper.MapTo<TestOptions>(args);
+
+            Assert.AreEqual("foo", mapped.String);
+            Assert.AreEqual(1, mapped.Integer);
+            Assert.AreEqual(123456789, mapped.Long);
+            Assert.AreEqual(3.14, mapped.Double);
+            Assert.IsTrue(mapped.Boolean);
+            Assert.IsTrue(mapped.Flag);
+        }
+
+        [TestMethod]
+        public void Mapper_MapTo_Generic_WithAliases()
+        {
+            args = new[] { "--s", "foo", "--i", "1", "--l", "123456789", "--d", "3.14", "--b", "true", "--f" };
+
+            var aliases = new Dictionary<string, string>
+            {
+                {"s", "String"},
+                {"i", "Integer"},
+                {"l", "Long"},
+                {"d", "Double"},
+                {"b", "Boolean"},
+                {"f", "Flag"}
+            };
+
+            var mapped = Mapper.MapTo<TestOptions>(args, aliases: aliases);
+
+            Assert.AreEqual("foo", mapped.String);
+            Assert.AreEqual(1, mapped.Integer);
+            Assert.AreEqual(123456789, mapped.Long);
+            Assert.AreEqual(3.14, mapped.Double);
+            Assert.IsTrue(mapped.Boolean);
+            Assert.IsTrue(mapped.Flag);
+        }
 
         [TestMethod]
         public void Mapper_MapTo_IgnoresBadKeys()

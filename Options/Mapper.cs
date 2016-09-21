@@ -38,16 +38,23 @@ namespace Options
             return map;
         }
 
-	public static object MapTo(IList<string> args, Type t, Dictionary<string, string> aliases)
-	{
-	    return MapTo(args, t, "--", aliases);
-	}
-
+        /// <summary>
+        /// map to an object using generics so you don't need to cast it
+        /// </summary>
+        public static T MapTo<T>(IList<string> args, string flagPrefix = "--", Dictionary<string, string> aliases = null)
+            where T : class
+        {
+            return MapTo(args, typeof(T), flagPrefix, aliases) as T;
+        }
+        
+        /// <summary>
+        /// map a list of arguments to the given object, using flag aliases if desired
+        /// </summary>
         public static object MapTo(IList<string> args, Type t, string flagPrefix = "--", Dictionary<string, string> aliases = null)
         {
             var coercer = new TypeCoercer();
             var obj = Activator.CreateInstance(t);
-	    aliases = aliases ?? new Dictionary<string, string>();
+	        aliases = aliases ?? new Dictionary<string, string>();
 
             for(var i = 0; i < args.Count; i++)
             {
@@ -58,15 +65,15 @@ namespace Options
                     // cut off the prefix to get the key
                     var key = flag.Substring(flagPrefix.Length);
 
-		    // check if the field is contained, or else if the 
-		    // field is contained w/a capital first letter
+		            // check if the field is contained, or else if the 
+		            // field is contained w/a capital first letter
                     var field = t.GetField(key) ?? t.GetField(key.Substring(0, 1).ToUpper() + key.Substring(1));
 
-			// if we have an alias, assign with it
+			        // if we have an alias, assign with it
 	                if (field == null && aliases.ContainsKey(key))
 		                field = t.GetField(aliases[key]);
 
-	            // if the given type contains this field,
+	                // if the given type contains this field,
                     // we can start processing it
                     if(field != null)
                     {
