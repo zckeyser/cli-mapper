@@ -33,7 +33,7 @@ private class TestOptions
     public bool Flag;
 }
 
-var options = Mapper.MapTo(args, typeof(TestOptions)) as TestOptions;
+var options = Mapper.MapTo<TestOptions>(args);
 
 options.String == "foo";
 options.Boolean == true;
@@ -54,7 +54,7 @@ Dictionary<string, string> aliases = new Dictionary<string, string>()
         { "f", "Flag" }
     };
 
-options = Mapper.MapTo(args, typeof(TestOptions), aliases);
+options = Mapper.MapTo<TestOptions>(args, aliases);
 
 options.String == "foo";
 options.Boolean == true;
