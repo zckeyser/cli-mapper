@@ -24,6 +24,10 @@ namespace Test
             public bool Boolean;
 
             public bool Flag;
+
+            public int IntegerProperty { get; set; }
+            public string StringProperty { get; set; }
+            public bool FlagProperty { get; set; }
         }
 
         [TestInitialize]
@@ -175,6 +179,18 @@ namespace Test
             Assert.AreEqual(3.14, mapped.Double);
             Assert.IsTrue(mapped.Boolean);
             Assert.IsTrue(mapped.Flag);
+        }
+
+        [TestMethod]
+        public void Mapper_MapTo_SetsPropertiesCorrectly()
+        {
+            args = new[] { "--StringProperty", "foo", "--IntegerProperty", "1", "--FlagProperty" };
+
+            var mapped = Mapper.MapTo<TestOptions>(args);
+
+            Assert.AreEqual("foo", mapped.StringProperty);
+            Assert.AreEqual(1, mapped.IntegerProperty);
+            Assert.IsTrue(mapped.FlagProperty);
         }
 
         [TestMethod]

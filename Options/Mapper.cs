@@ -41,10 +41,19 @@ namespace Options
         /// <summary>
         /// map to an object using generics so you don't need to cast it
         /// </summary>
-        public static T MapTo<T>(IList<string> args, string flagPrefix = "--", Dictionary<string, string> aliases = null)
+        public static T MapTo<T>(IList<string> args, string flagPrefix, Dictionary<string, string> aliases)
             where T : class
         {
             return MapTo(args, typeof(T), flagPrefix, aliases) as T;
+        }
+
+        /// <summary>
+        /// map to an object using generics so you don't need to cast it
+        /// </summary>
+        public static T MapTo<T>(IList<string> args, Dictionary<string, string> aliases = null)
+            where T : class
+        {
+            return MapTo(args, typeof(T), "--", aliases) as T;
         }
         
         /// <summary>
@@ -66,12 +75,16 @@ namespace Options
                     var key = flag.Substring(flagPrefix.Length);
 
 		            // check if the field is contained, or else if the 
-		            // field is contained w/a capital first letter
+		            // field is contained w/a capital first letter,
+                    // and do the same thing for properties
                     var field = t.GetField(key) ?? t.GetField(key.Substring(0, 1).ToUpper() + key.Substring(1));
+                    var property = t.GetProperty(key) ?? t.GetProperty(key.Substring(0, 1).ToUpper() + key.Substring(1));
 
 			        // if we have an alias, assign with it
 	                if (field == null && aliases.ContainsKey(key))
 		                field = t.GetField(aliases[key]);
+                    else if (property == null && aliases.ContainsKey(key))
+                        property = t.GetProperty(aliases[key]);
 
 	                // if the given type contains this field,
                     // we can start processing it
@@ -102,6 +115,33 @@ namespace Options
                             // if there's no corresponding argument we can treat it
                             // like a boolean flag
                             field.SetValue(obj, true);
+                        }
+                    }
+                    else if (property != null)
+                    {
+                        var propertyType = property.PropertyType;
+
+                        // if this isn't the last argument
+                        // and the next argument isn't a flag
+                        // we know it's a key-value type arg
+                        if (i < args.Count - 1 && !args[i + 1].StartsWith(flagPrefix))
+                        {
+                            bool success = true;
+                            var value = args[i + 1];
+
+                            // if we already want a string, no need to coerce
+                            var coercedValue = propertyType == typeof(string) ? value : coercer.CoerceTo(value, propertyType, out success);
+
+                            if (success)
+                                property.SetValue(obj, coercedValue);
+                        }
+                        else if (propertyType == typeof(bool))
+                        {
+                            // this is only valid if we're assigning to a boolean field
+
+                            // if there's no corresponding argument we can treat it
+                            // like a boolean flag
+                            property.SetValue(obj, true);
                         }
                     }
                 }

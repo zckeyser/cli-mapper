@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CLI-Option-Packer</id>
-    <version>$version$</version>
+    <version>1.2.0</version>
     <title>CLI Argument Mapper</title>
     <authors>Chris Keyser</authors>
     <owners>Chris Keyser</owners>
