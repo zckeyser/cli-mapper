@@ -1,7 +1,5 @@
-﻿using System;
-using Options;
+﻿using Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace Test
 {
@@ -87,6 +85,45 @@ namespace Test
 
             Assert.IsTrue(map.ContainsKey("b"));
             Assert.AreEqual(b, map["b"]);
+        }
+
+        [TestMethod]
+        public void Mapper_Map_LoneFlag()
+        {
+            args = new[] {"--flag"};
+
+            var map = Mapper.Map(args);
+
+            Assert.IsTrue(map.ContainsKey("flag"));
+            Assert.IsTrue((bool) map["flag"]);
+        }
+
+        [TestMethod]
+        public void Mapper_Map_LoneFlagFollowedByFlag()
+        {
+            args = new[] {"--flag", "--s", "foo"};
+
+            var map = Mapper.Map(args);
+
+            Assert.IsTrue(map.ContainsKey("flag"));
+            Assert.IsTrue((bool) map["flag"]);
+
+            Assert.IsTrue(map.ContainsKey("s"));
+            Assert.AreEqual("foo", map["s"]);
+        }
+
+        [TestMethod]
+        public void Mapper_Map_LoneFlagPrecededByOtherFlag()
+        {
+            args = new[] { "--s", "foo", "--flag" };
+
+            var map = Mapper.Map(args);
+
+            Assert.IsTrue(map.ContainsKey("flag"));
+            Assert.IsTrue((bool)map["flag"]);
+
+            Assert.IsTrue(map.ContainsKey("s"));
+            Assert.AreEqual("foo", map["s"]);
         }
 
         [TestMethod]

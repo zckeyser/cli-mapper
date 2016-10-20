@@ -11,7 +11,7 @@ namespace Options
             var coercer = new TypeCoercer();
 
             // check up to second-to-last argument
-            for(var i = 0; i < args.Count; i += 2)
+            for(var i = 0; i < args.Count; i++)
             {
                 var flag = args[i];
                 
@@ -20,10 +20,13 @@ namespace Options
                     // remove the prefix when making the key
                     var key = flag.Substring(flagPrefix.Length);
 
-                    if(i < args.Count - 1)
+                    if(i < args.Count - 1 && !args[i + 1].StartsWith(flagPrefix))
                     {
                         var value = args[i + 1];
                         map[key] = coercer.Coerce(value);
+
+                        // skip the corresponding value for the next loop, so we hit the next flag instead
+                        i++;
                     }
                     else
                     {
@@ -83,7 +86,8 @@ namespace Options
 			        // if we have an alias, assign with it
 	                if (field == null && aliases.ContainsKey(key))
 		                field = t.GetField(aliases[key]);
-                    else if (property == null && aliases.ContainsKey(key))
+
+                    if (property == null && aliases.ContainsKey(key))
                         property = t.GetProperty(aliases[key]);
 
 	                // if the given type contains this field,
