@@ -52,12 +52,17 @@
   </Choose>
   <ItemGroup>
     <Compile Include="MapTest.cs" />
-    <Compile Include="MapToTest.cs" />
+    <Compile Include="MapTo\MapToAliasTests.cs" />
+    <Compile Include="MapTo\MapToFieldTests.cs" />
+    <Compile Include="MapTo\MapToGeneralTests.cs" />
+    <Compile Include="MapTo\MapToInvalidInputTests.cs" />
+    <Compile Include="MapTo\MapToPropertyTests.cs" />
+    <Compile Include="MapTo\TestOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeCoercerTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Options\CLIMapper.csproj">
+    <ProjectReference Include="..\CLIMapper\CLIMapper.csproj">
       <Project>{1c6a4f70-763b-4a06-98c3-e1cd57585665}</Project>
       <Name>CLIMapper</Name>
     </ProjectReference>

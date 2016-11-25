@@ -1,4 +1,4 @@
-﻿using Options;
+﻿using CLIMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test

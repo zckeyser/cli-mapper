@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Options
+namespace CLIMapper
 {
     public class TypeCoercer
     {
