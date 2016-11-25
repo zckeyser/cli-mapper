@@ -57,9 +57,9 @@
     <Compile Include="TypeCoercerTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Options\Options.csproj">
+    <ProjectReference Include="..\Options\CLIMapper.csproj">
       <Project>{1c6a4f70-763b-4a06-98c3-e1cd57585665}</Project>
-      <Name>Options</Name>
+      <Name>CLIMapper</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

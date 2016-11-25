@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CLI-Option-Packer</id>
-    <version>1.2.1</version>
+    <version>1.0.0</version>
     <title>CLI Argument Mapper</title>
     <authors>Chris Keyser</authors>
     <owners>Chris Keyser</owners>
@@ -11,9 +11,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Packs program arguments into a map or object for easy usage</description>
     <summary>Look at the project site to see usage documentation</summary>
-    <releaseNotes>Fixed bug where properties weren't being set</releaseNotes>
+    <releaseNotes>Initial Release</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>cli args arguments parameters params mapper packer console command line</tags>
+    <tags>cli arg args arguments param params parameters mapper packer console command line</tags>
     <dependencies>
     </dependencies>
   </metadata>
