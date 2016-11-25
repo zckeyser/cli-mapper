@@ -97,8 +97,7 @@ var anonymousDefaults = new
     Flag = true
 }
 
-// you can leave out the generic specification if you're passing an object of the type
-options = Mapper.MapTo(new string[0], anonymousDefaults)
+options = Mapper.MapTo<TestOptions>(new string[0], anonymousDefaults)
 
 options.String == "foo";
 options.Boolean == true;
