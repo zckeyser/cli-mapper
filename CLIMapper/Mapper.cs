@@ -66,19 +66,28 @@ namespace CLIMapper
             return MapTo(args, "-", aliases, default(T));
         }
 
-        public static T MapTo<T>(IList<string> args, string flagPrefix, dynamic defaultValue)
+        public static T MapTo<T>(IList<string> args, dynamic defaultValue)
+            where T : class
         {
-            return MapTo(args, flagPrefix, null, DynamicToType<T>(defaultValue));
+            return MapTo<T>(args, "-", null, DynamicToType<T>(defaultValue));
+        }
+
+        public static T MapTo<T>(IList<string> args, string flagPrefix, dynamic defaultValue)
+            where T : class
+        {
+            return MapTo<T>(args, flagPrefix, null, DynamicToType<T>(defaultValue));
         }
 
         public static T MapTo<T>(IList<string> args, Dictionary<string, string> aliases, dynamic defaultValue)
+            where T : class
         {
-            return MapTo(args, "-", aliases, DynamicToType<T>(defaultValue));
+            return MapTo<T>(args, "-", aliases, DynamicToType<T>(defaultValue));
         }
 
         public static T MapTo<T>(IList<string> args, string flagPrefix, Dictionary<string, string> aliases, dynamic defaultValue)
+            where T : class
         {
-            return MapTo(args, flagPrefix, aliases, DynamicToType<T>(defaultValue));
+            return MapTo<T>(args, flagPrefix, aliases, DynamicToType<T>(defaultValue));
         }
 
         private static T DynamicToType<T>(dynamic obj)
@@ -101,6 +110,24 @@ namespace CLIMapper
             }
 
             return retv;
+        }
+
+        public static T MapTo<T>(IList<string> args, T defaultValue)
+            where T : class
+        {
+            return MapTo(args, "-", null, defaultValue);
+        }
+
+        public static T MapTo<T>(IList<string> args, string flagPrefix, T defaultValue)
+            where T : class
+        {
+            return MapTo(args, flagPrefix, null, defaultValue);
+        }
+
+        public static T MapTo<T>(IList<string> args, Dictionary<string, string> aliases, T defaultValue)
+            where T : class
+        {
+            return MapTo(args, "-", aliases, defaultValue);
         }
 
         /// <summary>

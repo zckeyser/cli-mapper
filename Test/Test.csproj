@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="MapTest.cs" />
     <Compile Include="MapTo\MapToAliasTests.cs" />
+    <Compile Include="MapTo\MapToDefaultTests.cs" />
     <Compile Include="MapTo\MapToFieldTests.cs" />
     <Compile Include="MapTo\MapToGeneralTests.cs" />
     <Compile Include="MapTo\MapToInvalidInputTests.cs" />
