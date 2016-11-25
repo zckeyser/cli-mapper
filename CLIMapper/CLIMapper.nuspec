@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>CLI-Option-Packer</id>
+    <id>CLI-Argument-Mapper</id>
     <version>1.0.0</version>
     <title>CLI Argument Mapper</title>
     <authors>Chris Keyser</authors>
@@ -9,7 +9,7 @@
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/zckeyser/cli-mapper</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Packs program arguments into a map or object for easy usage</description>
+    <description>Packs command line arguments into a map or object for easy usage</description>
     <summary>Look at the project site to see usage documentation</summary>
     <releaseNotes>Initial Release</releaseNotes>
     <copyright>Copyright 2016</copyright>
