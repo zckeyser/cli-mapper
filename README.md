@@ -2,7 +2,7 @@
 This project is a utility which takes the arguments to a program as a parameter, and returns a map of all of the arguments parsed out into key-value pairs based on flag-value pairs in the argument list. Types are also coerced out of the given arguments, and any flag prefix you want (including none) can be used. Arguments can also be parsed into a given type, mapping either by checking if a flag is a field on the given type, or by using a given alias to map flags to fields on the type. See the examples below to see how it works in practice.
 
 ## Installation
-This project is on NuGet as [CLI-Argument-Mapper](https://www.nuget.org/packages/CLI-Argument-Mapper). It can be installed by running the following in PowerShell:
+This project is on NuGet as [CLI-Argument-Mapper](https://www.nuget.org/packages/CLI-Argument-Mapper). It can be installed via Visual Studio or by running the following in PowerShell:
 ```
 Install-Package CLI-Argument-Mapper
 ```
@@ -91,10 +91,10 @@ var defaultValues = new TestOptions
     Double = 1.1,
     Long = 2147483648L,
     Flag = true
-}
+};
 
 // you can leave out the generic specification if you're passing an object of the type
-options = Mapper.MapTo(new string[0], defaultValues)
+options = Mapper.MapTo(new string[0], defaultValues);
 
 options.String == "foo";
 options.Boolean == true;
@@ -116,9 +116,9 @@ var anonymousDefaults = new
     Double = 1.1,
     Long = 2147483648L,
     Flag = true
-}
+};
 
-options = Mapper.MapTo<TestOptions>(new string[0], anonymousDefaults)
+options = Mapper.MapTo<TestOptions>(new string[0], anonymousDefaults);
 
 options.String == "foo";
 options.Boolean == true;
