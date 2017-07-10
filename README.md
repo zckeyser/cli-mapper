@@ -10,7 +10,14 @@ Install-Package CLI-Argument-Mapper
 ## Usage
 Any combination of prefix, alias and defaults (which are shown individually below) can be used when calling `MapTo`.
 
-```csharp
+- [Map to a Dictionary](#map-to-a-dictionary)
+- [Map to an Object](#map-to-an-object)
+- [Map to an Object with Aliases](#map-to-an-object-with-aliases)
+- [Using Default Values](#using-default-values)
+- [Defaults with an Anonymous Object](#defaults-with-an-anonymous-object)
+
+### Map to a Dictionary
+```cs
 // mapping to a dictionary
 string[] args = {"--string", "foo", "--bool", "true", "--int", "1", "--double", "1.1", "--long", "2147483648"};
 
@@ -21,7 +28,10 @@ map["bool"] == true;
 map["int"] == 1;
 map["double"] == 1.1;
 map["long"] == 2147483648L;
+```
 
+### Map to an Object
+```cs
 // mapping to an object
 args = {"--String", "foo", "--Boolean", "true", "--Integer", "1", "--Double", "1.1", "--Long", "2147483648", "--Flag"};
 
@@ -43,7 +53,10 @@ options.Integer == 1;
 options.Double == 1.1;
 options.Long == 2147483648L;
 options.Flag == true;
+```
 
+### Map to an Object with Aliases
+```cs
 // mapping to an object using aliases
 args = {"--s", "foo", "--b", "true", "--i", "1", "--d", "1.1", "--l", "2147483648", "--f"}
 Dictionary<string, string> aliases = new Dictionary<string, string>()
@@ -64,7 +77,11 @@ options.Integer == 1;
 options.Double == 1.1;
 options.Long == 2147483648L;
 options.Flag == true;
+```
 
+### Using Default Values
+
+```cs
 // setting defaults when mapping
 var defaultValues = new TestOptions
 {
@@ -85,7 +102,11 @@ options.Integer == 1;
 options.Double == 1.1;
 options.Long == 2147483648L;
 options.Flag = true;
+```
 
+### Defaults with an Anonymous Object
+
+```cs
 // you can use an anonymous object too
 var anonymousDefaults = new
 {
