@@ -8,10 +8,11 @@ Install-Package CLI-Argument-Mapper
 ```
 
 ## Usage
-Any combination of prefix, alias and defaults (which are shown individually below) can be used when calling `MapTo`.
+Any combination of prefix, alias and defaults (which are shown individually below) can be used when calling `MapTo`. In addition, arguments which both do not follow a flag and are not prefixed with `flagPrefix` (default `--`) will be ignored.
 
 - [Map to a Dictionary](#map-to-a-dictionary)
 - [Map to an Object](#map-to-an-object)
+- [Changing the Flag Prefix](#changing-the-flag-prefix)
 - [Map to an Object with Aliases](#map-to-an-object-with-aliases)
 - [Using Default Values](#using-default-values)
 - [Defaults with an Anonymous Object](#defaults-with-an-anonymous-object)
@@ -53,6 +54,19 @@ options.Integer == 1;
 options.Double == 1.1;
 options.Long == 2147483648L;
 options.Flag == true;
+```
+
+### Changing the Flag Prefix
+```cs
+string[] args = {"/string", "foo", "/bool", "true", "/int", "1", "/double", "1.1", "/long", "2147483648"};
+
+Dictionary<string, object> map = Mapper.Map(args, "/");
+
+map["string"] == "foo";
+map["bool"] == true;
+map["int"] == 1;
+map["double"] == 1.1;
+map["long"] == 2147483648L;
 ```
 
 ### Map to an Object with Aliases
