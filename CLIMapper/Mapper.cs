@@ -98,15 +98,17 @@ namespace CLIMapper
             // map all properties over
             foreach (var prop in retv.GetType().GetProperties(BindingFlags.Public | BindingFlags.Static))
             {
-                if (obj.Contains(prop.Name))
-                    prop.SetValue(retv, obj[prop.Name]);
+                var toSet = obj[prop.Name];
+                if (toSet != null)
+                    prop.SetValue(retv, toSet);
             }
 
             // map all fields over
             foreach (var field in retv.GetType().GetFields(BindingFlags.Public | BindingFlags.Static))
             {
-                if(obj.Contains(field.Name))
-                    field.SetValue(retv, obj[field.Name]);
+                var toSet = obj[field.Name];
+                if (toSet != null)
+                    field.SetValue(retv, toSet);
             }
 
             return retv;

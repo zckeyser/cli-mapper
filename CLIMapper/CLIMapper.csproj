@@ -7,8 +7,8 @@
     <ProjectGuid>{1C6A4F70-763B-4A06-98C3-E1CD57585665}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Options</RootNamespace>
-    <AssemblyName>Options</AssemblyName>
+    <RootNamespace>CLIMapper</RootNamespace>
+    <AssemblyName>CLIMapper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeCoercer.cs" />

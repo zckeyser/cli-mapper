@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CLI-Argument-Mapper</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>CLI Argument Mapper</title>
     <authors>Chris Keyser</authors>
     <owners>Chris Keyser</owners>
@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/zckeyser/cli-mapper</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Packs command line arguments into a map or object for easy usage</description>
-    <summary>Look at the project site to see usage documentation</summary>
-    <releaseNotes>Initial Release</releaseNotes>
+    <summary>Packs command line arguments into a map or object for easy usage</summary>
+    <releaseNotes>Fixed bug with default anonymous objects</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>cli arg args arguments param params parameters mapper packer console command line</tags>
     <dependencies>
