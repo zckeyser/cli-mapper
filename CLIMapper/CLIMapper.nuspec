@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CLI-Argument-Mapper</id>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <title>CLI Argument Mapper</title>
     <authors>Chris Keyser</authors>
     <owners>Chris Keyser</owners>
@@ -11,9 +11,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Packs command line arguments into a map or object for easy usage</description>
     <summary>Packs command line arguments into a map or object for easy usage</summary>
-    <releaseNotes>Fixed bug with default anonymous objects</releaseNotes>
+    <releaseNotes>Added Command.Execute for dynamic action dispatch based on CLI args</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>cli arg args arguments param params parameters mapper packer console command line</tags>
+    <tags>cli arg args arguments param params parameters mapper packer console command line command execution dispatch</tags>
     <dependencies>
     </dependencies>
   </metadata>

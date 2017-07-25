@@ -70,7 +70,7 @@ CLI Mapper can execute actions dynamically based on command line input using `Co
 and it will attempt to parse any subsequent input into the type corresponding to that command's action.
 Aliases and flag prefix overrides (default `--`) can be provided as optional arguments. Due to restrictions
 of C# optional arguments, if only aliases and not a prefix is to be passed, you will need to specify the
-variable as follows: `Command.Execute(args, fooAction, barAction, aliases: aliases)
+variable as follows: `Command.Execute(args, fooAction, barAction, aliases: aliases)`
 
 Command names can either be directly specified by implementing the `ICommand` interface, or left to default to the class name.
 
