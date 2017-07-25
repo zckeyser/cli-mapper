@@ -67,11 +67,14 @@ options.Flag == true;
 CLI Mapper can execute actions dynamically based on command line input using `Command.Execute` for up to 16 commands.
 
 `Command.Execute` will choose what action to call based on what command string is given as an argument,
-and it will attempt to parse and subsequent input into the type corresponding to that command's action.
+and it will attempt to parse any subsequent input into the type corresponding to that command's action.
+Aliases and flag prefix overrides (default `--`) can be provided as optional arguments. Due to restrictions
+of C# optional arguments, if only aliases and not a prefix is to be passed, you will need to specify the
+variable as follows: `Command.Execute(args, fooAction, barAction, aliases: aliases)
 
 Command names can either be directly specified by implementing the `ICommand` interface, or left to default to the class name.
 
-Commands are case-insensitive.
+Command names are case-insensitive.
 
 ```cs
 class Foo
