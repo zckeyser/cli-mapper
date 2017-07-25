@@ -1,4 +1,5 @@
 import sys
+import os
 
 def get_class_name(index):
     names = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel', 'India', 'Juliett', 'Kilo', 'Lima', 'Mike', 'November', 'Oscar', 'Papa']
@@ -6,21 +7,29 @@ def get_class_name(index):
     return names[index]
 
 def gen_class(f, index):
-    name = get_class_name[index]
+    name = get_class_name(index)
 
-    f.write('public class ' + name + ' : ICommand')
+    # lowercase first letter of the type's name
+    lambda_name = name.lower()[0]
+
+    f.write('\tpublic class ' + name + ' : ICommand')
     f.write('\n')
-    f.write('{\n')
+    f.write('\t{\n')
 
-    f.write('public string Command => ' + name.lower() + ';\n')
+    f.write('\t\tpublic static int Value { get; set; }\n')
+    f.write('\t\tpublic static Action<' + name + '> Action = ' + lambda_name + ' => Value = ' + lambda_name + '.i;\n')
+    f.write('\t\tpublic string Command => "' + name.lower() + '";\n')
     f.write('\n')
-    f.write('public int i;\n')
+    f.write('\t\tpublic int i;\n')
     f.write('\n')
 
-    f.write('}\n')
+    f.write('\t}\n')
+    f.write('\n')
 
-def gen_classes(filename):
-    f = open('../Test/Command/CommandTestClasses.cs')
+def gen_test_classes():
+    f = open('../Test/Command/CommandTestClasses.cs', 'w+')
+
+    f.write('/*\n * generated using codegen/command_test.py\n */\n\n')
     
     # namespace and includes
     f.write('using System;\n')
@@ -29,21 +38,90 @@ def gen_classes(filename):
     f.write('\n')
 
     f.write('namespace Test\n')
-    f.write('{')
+    f.write('{\n')
 
-    for i in [0..15]:
+    for i in range(0, 15):
         gen_class(f, i)
 
     f.write('}')
 
+# gets a comma-delimited list of actions to pass to Command.Execute() up to the given argument index
+def action_params(up_to):
+    params = ''
+
+    for i in range(0, up_to - 1):
+        params += get_class_name(i) + '.Action, '
+
+    params += get_class_name(up_to - 1) + '.Action'
+
+    return params
+
+def gen_normal_test_set(f, index):
+    # arity is the number of arguments a function takes
+    arity = index + 1
+
+    # gen a test to verify each command in the set
+    for i in range(0, index):
+        class_name = get_class_name(i)
+
+        f.write('\t\t[Test]\n')
+        f.write('\t\tpublic void Execute_' + str(index) + 'ActionArgs_Command' + str(i + 1) + '_OnlyActions()\n')
+        f.write('\t\t{\n')
+
+        f.write('\t\t\tstring[] args = new[] { "' + class_name.lower() + '", "--i", "' + str(i) + '" };\n')
+        f.write('\n')
+        f.write('\t\t\tCommand.Execute(args, ' + action_params(index) + ');\n')
+        f.write('\n')
+        f.write('\t\t\tAssert.AreEqual(' + class_name + '.Value, ' + str(i) + ');\n')
+
+        f.write('\t\t}\n')
+        f.write('\n')
+
 def gen_normal_tests():
-    
+    # generate basic tests that use neither aliases nor a prefix override
+    f = open('../Test/Command/BasicCommandTest.cs', 'w+')
+
+    f.write('/*\n * generated using codegen/command_test.py\n */\n\n')
+
+    # namespace and includes
+    f.write('using System;\n')
+    f.write('using CLIMapper;\n')
+    f.write('using NUnit.Framework;\n')
+
+    f.write('\n')
+
+    f.write('namespace Test\n')
+    f.write('{\n')
+
+    f.write('\t[TestFixture]\n')
+    f.write('\tpublic class BasicCommandTest\n')
+    f.write('\t{\n')
+
+    for i in range(0, 15):
+        gen_normal_test_set(f, i)
+
+    f.write('\t}\n')
+
+    f.write('}\n')
 
 def gen_alias_tests():
-
+    print('incomplete step gen_alias_tests')
 
 def gen_prefix_tests():
-
+    print('incomplete step gen_prefix_tests')
 
 def gen_both_tests():
+    print('incomplete step gen_both_tests')
 
+def gen_edge_tests():
+    print('incomplete step gen_edge_tests')
+
+# main
+print('Ensuring command test directory exists...')
+directory = '../Test/Command'
+if not os.path.exists(directory):
+    os.makedirs(directory)
+print('Generating test classes...')
+gen_test_classes()
+print('Generating base tests...')
+gen_normal_tests()
