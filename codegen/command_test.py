@@ -57,9 +57,6 @@ def action_params(up_to):
     return params
 
 def gen_normal_test_set(f, index):
-    # arity is the number of arguments a function takes
-    arity = index + 1
-
     # gen a test to verify each command in the set
     for i in range(0, index):
         class_name = get_class_name(i)
@@ -104,8 +101,51 @@ def gen_normal_tests():
 
     f.write('}\n')
 
+def gen_alias_test_set(f, index):
+    # gen a test to verify each command in the set
+    for i in range(0, index):
+        class_name = get_class_name(i)
+
+        f.write('\t\t[Test]\n')
+        f.write('\t\tpublic void Execute_' + str(index) + 'ActionArgs_Command' + str(i + 1) + '_OnlyActions()\n')
+        f.write('\t\t{\n')
+
+        f.write('\t\t\tstring[] args = new[] { "' + class_name.lower() + '", "--integer", "' + str(i) + '" };\n')
+        f.write('\t\t\tDictionary<string, string> aliases = new Dictionary<string, string>() { { "integer", "i" } };\n')
+        f.write('\n')
+        f.write('\t\t\tCommand.Execute(args, ' + action_params(index) + ', aliases: aliases);\n')
+        f.write('\n')
+        f.write('\t\t\tAssert.AreEqual(' + class_name + '.Value, ' + str(i) + ');\n')
+
+        f.write('\t\t}\n')
+        f.write('\n')
+
 def gen_alias_tests():
-    print('incomplete step gen_alias_tests')
+    # generate basic tests that use neither aliases nor a prefix override
+    f = open('../Test/Command/AliasCommandTest.cs', 'w+')
+
+    f.write('/*\n * generated using codegen/command_test.py\n */\n\n')
+
+    # namespace and includes
+    f.write('using System.Collections.Generic;\n')
+    f.write('using CLIMapper;\n')
+    f.write('using NUnit.Framework;\n')
+
+    f.write('\n')
+
+    f.write('namespace Test\n')
+    f.write('{\n')
+
+    f.write('\t[TestFixture]\n')
+    f.write('\tpublic class AliasCommandTest\n')
+    f.write('\t{\n')
+
+    for i in range(0, 15):
+        gen_alias_test_set(f, i)
+
+    f.write('\t}\n')
+
+    f.write('}\n')
 
 def gen_prefix_tests():
     print('incomplete step gen_prefix_tests')
@@ -121,7 +161,13 @@ print('Ensuring command test directory exists...')
 directory = '../Test/Command'
 if not os.path.exists(directory):
     os.makedirs(directory)
+
 print('Generating test classes...')
 gen_test_classes()
+
 print('Generating base tests...')
 gen_normal_tests()
+
+print('Generating alias tests...')
+gen_alias_tests()
+
