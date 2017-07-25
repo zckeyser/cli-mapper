@@ -55,6 +55,7 @@
     <Compile Include="Command\AliasCommandTest.cs" />
     <Compile Include="Command\BasicCommandTest.cs" />
     <Compile Include="Command\CommandTestClasses.cs" />
+    <Compile Include="Command\PrefixCommandTest.cs" />
     <Compile Include="MapTest.cs" />
     <Compile Include="MapTo\MapToAliasTests.cs" />
     <Compile Include="MapTo\MapToDefaultTests.cs" />

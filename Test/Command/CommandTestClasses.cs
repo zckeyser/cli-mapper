@@ -157,4 +157,14 @@ namespace Test
 
 	}
 
+	public class Papa : ICommand
+	{
+		public static int Value { get; set; }
+		public static Action<Papa> Action = p => Value = p.i;
+		public string Command => "papa";
+
+		public int i;
+
+	}
+
 }

@@ -1,10 +1,11 @@
 import sys
 import os
 
-def get_class_name(index):
-    names = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel', 'India', 'Juliett', 'Kilo', 'Lima', 'Mike', 'November', 'Oscar', 'Papa']
+def class_names():
+    return ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel', 'India', 'Juliett', 'Kilo', 'Lima', 'Mike', 'November', 'Oscar', 'Papa']
 
-    return names[index]
+def get_class_name(index):
+    return class_names()[index]
 
 def gen_class(f, index):
     name = get_class_name(index)
@@ -40,7 +41,7 @@ def gen_test_classes():
     f.write('namespace Test\n')
     f.write('{\n')
 
-    for i in range(0, 15):
+    for i in range(0, 16):
         gen_class(f, i)
 
     f.write('}')
@@ -94,7 +95,7 @@ def gen_normal_tests():
     f.write('\tpublic class BasicCommandTest\n')
     f.write('\t{\n')
 
-    for i in range(0, 15):
+    for i in range(0, 17):
         gen_normal_test_set(f, i)
 
     f.write('\t}\n')
@@ -107,7 +108,7 @@ def gen_alias_test_set(f, index):
         class_name = get_class_name(i)
 
         f.write('\t\t[Test]\n')
-        f.write('\t\tpublic void Execute_' + str(index) + 'ActionArgs_Command' + str(i + 1) + '_OnlyActions()\n')
+        f.write('\t\tpublic void Execute_' + str(index) + 'ActionArgs_Command' + str(i + 1) + '_Alias()\n')
         f.write('\t\t{\n')
 
         f.write('\t\t\tstring[] args = new[] { "' + class_name.lower() + '", "--integer", "' + str(i) + '" };\n')
@@ -140,18 +141,59 @@ def gen_alias_tests():
     f.write('\tpublic class AliasCommandTest\n')
     f.write('\t{\n')
 
-    for i in range(0, 15):
+    for i in range(0, 17):
         gen_alias_test_set(f, i)
 
     f.write('\t}\n')
 
     f.write('}\n')
 
-def gen_prefix_tests():
-    print('incomplete step gen_prefix_tests')
+def gen_prefix_test_set(f, index):
+    # gen a test to verify each command in the set
+    for i in range(0, index):
+        class_name = get_class_name(i)
 
-def gen_both_tests():
-    print('incomplete step gen_both_tests')
+        f.write('\t\t[Test]\n')
+        f.write('\t\tpublic void Execute_' + str(index) + 'ActionArgs_Command' + str(i + 1) + '_Prefix()\n')
+        f.write('\t\t{\n')
+
+        f.write('\t\t\tstring[] args = new[] { "' + class_name.lower() + '", "-i", "' + str(i) + '" };\n')
+        f.write('\t\t\tstring prefix = "-";\n')
+        f.write('\n')
+        f.write('\t\t\tCommand.Execute(args, ' + action_params(index) + ', prefix);\n')
+        f.write('\n')
+        f.write('\t\t\tAssert.AreEqual(' + class_name + '.Value, ' + str(i) + ');\n')
+
+        f.write('\t\t}\n')
+        f.write('\n')
+
+def gen_prefix_tests():
+    # generate basic tests that use neither aliases nor a prefix override
+    f = open('../Test/Command/PrefixCommandTest.cs', 'w+')
+
+    f.write('/*\n * generated using codegen/command_test.py\n */\n\n')
+
+    # namespace and includes
+    f.write('using System.Collections.Generic;\n')
+    f.write('using CLIMapper;\n')
+    f.write('using NUnit.Framework;\n')
+
+    f.write('\n')
+
+    f.write('namespace Test\n')
+    f.write('{\n')
+
+    f.write('\t[TestFixture]\n')
+    f.write('\tpublic class PrefixCommandTest\n')
+    f.write('\t{\n')
+
+    for i in range(0, 17):
+        gen_prefix_test_set(f, i)
+
+    f.write('\t}\n')
+
+    f.write('}\n')
+
 
 def gen_edge_tests():
     print('incomplete step gen_edge_tests')
@@ -170,4 +212,7 @@ gen_normal_tests()
 
 print('Generating alias tests...')
 gen_alias_tests()
+
+print('Generating prefix tests...')
+gen_prefix_tests()
 
