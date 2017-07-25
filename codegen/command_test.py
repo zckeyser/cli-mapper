@@ -75,7 +75,7 @@ def gen_normal_test_set(f, index):
         f.write('\t\t}\n')
         f.write('\n')
 
-def gen_normal_tests():
+def gen_baseline_tests():
     # generate basic tests that use neither aliases nor a prefix override
     f = open('../Test/Command/BasicCommandTest.cs', 'w+')
 
@@ -122,7 +122,7 @@ def gen_alias_test_set(f, index):
         f.write('\n')
 
 def gen_alias_tests():
-    # generate basic tests that use neither aliases nor a prefix override
+    # generate tests that use aliases
     f = open('../Test/Command/AliasCommandTest.cs', 'w+')
 
     f.write('/*\n * generated using codegen/command_test.py\n */\n\n')
@@ -168,7 +168,7 @@ def gen_prefix_test_set(f, index):
         f.write('\n')
 
 def gen_prefix_tests():
-    # generate basic tests that use neither aliases nor a prefix override
+    # generate tests that use a prefix override
     f = open('../Test/Command/PrefixCommandTest.cs', 'w+')
 
     f.write('/*\n * generated using codegen/command_test.py\n */\n\n')
@@ -194,8 +194,14 @@ def gen_prefix_tests():
 
     f.write('}\n')
 
+def gen_default_command_tests():
+    # tests to verify default command naming behavior
 
 def gen_edge_tests():
+    # empty args error
+    # no matching command error
+    # case insensitivity
+
     print('incomplete step gen_edge_tests')
 
 # main
@@ -208,7 +214,7 @@ print('Generating test classes...')
 gen_test_classes()
 
 print('Generating base tests...')
-gen_normal_tests()
+gen_baseline_tests()
 
 print('Generating alias tests...')
 gen_alias_tests()

@@ -24,218 +24,410 @@ namespace CLIMapper
          * B) instantiate the type to check what its command string is
          */
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T>(string[] args, Action<T> command1, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T : class, ICommand
+            where T : class
         {
             Execute(args, command1, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2>(string[] args, Action<T1> command1, Action<T2> command2, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
+            where T1 : class
+            where T2 : class
         {
             Execute(args, command1, command2, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
         {
             Execute(args, command1, command2, command3, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
         {
             Execute(args, command1, command2, command3, command4, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
         {
             Execute(args, command1, command2, command3, command4, command5, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, command7, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7, T8>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, Action<T8> command8, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
-            where T8 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
+            where T8 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, command7, command8, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, Action<T8> command8, Action<T9> command9, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
-            where T8 : class, ICommand
-            where T9 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
+            where T8 : class
+            where T9 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, command7, command8, command9, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, Action<T8> command8, Action<T9> command9, Action<T10> command10, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
-            where T8 : class, ICommand
-            where T9 : class, ICommand
-            where T10 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
+            where T8 : class
+            where T9 : class
+            where T10 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, command7, command8, command9, command10, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, Action<T8> command8, Action<T9> command9, Action<T10> command10, Action<T11> command11, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
-            where T8 : class, ICommand
-            where T9 : class, ICommand
-            where T10 : class, ICommand
-            where T11 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
+            where T8 : class
+            where T9 : class
+            where T10 : class
+            where T11 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, command7, command8, command9, command10, command11, Void.Action, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, Action<T8> command8, Action<T9> command9, Action<T10> command10, Action<T11> command11, Action<T12> command12, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
-            where T8 : class, ICommand
-            where T9 : class, ICommand
-            where T10 : class, ICommand
-            where T11 : class, ICommand
-            where T12 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
+            where T8 : class
+            where T9 : class
+            where T10 : class
+            where T11 : class
+            where T12 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, command7, command8, command9, command10, command11, command12, Void.Action, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, Action<T8> command8, Action<T9> command9, Action<T10> command10, Action<T11> command11, Action<T12> command12, Action<T13> command13, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
-            where T8 : class, ICommand
-            where T9 : class, ICommand
-            where T10 : class, ICommand
-            where T11 : class, ICommand
-            where T12 : class, ICommand
-            where T13 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
+            where T8 : class
+            where T9 : class
+            where T10 : class
+            where T11 : class
+            where T12 : class
+            where T13 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, command7, command8, command9, command10, command11, command12, command13, Void.Action, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, Action<T8> command8, Action<T9> command9, Action<T10> command10, Action<T11> command11, Action<T12> command12, Action<T13> command13, Action<T14> command14, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
-            where T8 : class, ICommand
-            where T9 : class, ICommand
-            where T10 : class, ICommand
-            where T11 : class, ICommand
-            where T12 : class, ICommand
-            where T13 : class, ICommand
-            where T14 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
+            where T8 : class
+            where T9 : class
+            where T10 : class
+            where T11 : class
+            where T12 : class
+            where T13 : class
+            where T14 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, command7, command8, command9, command10, command11, command12, command13, command14, Void.Action, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, Action<T8> command8, Action<T9> command9, Action<T10> command10, Action<T11> command11, Action<T12> command12, Action<T13> command13, Action<T14> command14, Action<T15> command15, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
-            where T8 : class, ICommand
-            where T9 : class, ICommand
-            where T10 : class, ICommand
-            where T11 : class, ICommand
-            where T12 : class, ICommand
-            where T13 : class, ICommand
-            where T14 : class, ICommand
-            where T15 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
+            where T8 : class
+            where T9 : class
+            where T10 : class
+            where T11 : class
+            where T12 : class
+            where T13 : class
+            where T14 : class
+            where T15 : class
         {
             Execute(args, command1, command2, command3, command4, command5, command6, command7, command8, command9, command10, command11, command12, command13, command14, command15, Void.Action, flagPrefix, aliases);
         }
 
+        /// <summary>
+        /// execute an action based on the given command line arguments
+        /// 
+        /// any command line arguments will be parsed into the object passed to the action using <see cref="Mapper.MapTo{T}(IList{string})"/>
+        /// optional flag prefix and alias options (<see cref="Mapper.MapTo{T}(IList{string})"/>) can also be passed to the function
+        /// 
+        /// the command name to match to each type is either
+        /// A) the Command property if the type implements ICommand
+        /// B) the type's name
+        /// 
+        /// commands are type insenitive
+        /// </summary>
         public static void Execute<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(string[] args, Action<T1> command1, Action<T2> command2, Action<T3> command3, Action<T4> command4, Action<T5> command5, Action<T6> command6, Action<T7> command7, Action<T8> command8, Action<T9> command9, Action<T10> command10, Action<T11> command11, Action<T12> command12, Action<T13> command13, Action<T14> command14, Action<T15> command15, Action<T16> command16, string flagPrefix = "--", Dictionary<string, string> aliases = null)
-            where T1 : class, ICommand
-            where T2 : class, ICommand
-            where T3 : class, ICommand
-            where T4 : class, ICommand
-            where T5 : class, ICommand
-            where T6 : class, ICommand
-            where T7 : class, ICommand
-            where T8 : class, ICommand
-            where T9 : class, ICommand
-            where T10 : class, ICommand
-            where T11 : class, ICommand
-            where T12 : class, ICommand
-            where T13 : class, ICommand
-            where T14 : class, ICommand
-            where T15 : class, ICommand
-            where T16 : class, ICommand
+            where T1 : class
+            where T2 : class
+            where T3 : class
+            where T4 : class
+            where T5 : class
+            where T6 : class
+            where T7 : class
+            where T8 : class
+            where T9 : class
+            where T10 : class
+            where T11 : class
+            where T12 : class
+            where T13 : class
+            where T14 : class
+            where T15 : class
+            where T16 : class
         {
             // can't distill this into a proper structure since we need to maintain the generics
             // so we're doing it the CS 101 way
@@ -322,7 +514,7 @@ namespace CLIMapper
 
         private static string GetCommandString(Type t)
         {
-            return ((ICommand) Activator.CreateInstance(t)).Command.ToLower();
+            return t.GetInterfaces().Contains(typeof(ICommand)) ? ((ICommand) Activator.CreateInstance(t)).Command.ToLower() : t.Name.ToLower();
         }
     }
 }
