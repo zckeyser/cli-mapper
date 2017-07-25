@@ -1,67 +1,67 @@
 ﻿using CLIMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Test
 {
-    [TestClass]
+    [TestFixture]
     public class TypeCoercerTest
     {
         private TypeCoercer coercer;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             coercer = new TypeCoercer();
         }
 
-        [TestMethod]
+        [Test]
         public void TypeCoercer_Coerce_CoercesBool()
         {
             string toCoerce = "true";
 
             var result = coercer.Coerce(toCoerce);
 
-            Assert.IsInstanceOfType(result, typeof(bool));
+            Assert.AreEqual(result, true);
         }
 
-        [TestMethod]
+        [Test]
         public void TypeCoercer_Coerce_CoercesDouble()
         {
             string toCoerce = "1.1";
 
             var result = coercer.Coerce(toCoerce);
 
-            Assert.IsInstanceOfType(result, typeof(double));
+            Assert.AreEqual(result, 1.1);
         }
 
-        [TestMethod]
+        [Test]
         public void TypeCoercer_Coerce_CoercesInt()
         {
             string toCoerce = "1";
 
             var result = coercer.Coerce(toCoerce);
 
-            Assert.IsInstanceOfType(result, typeof(int));
+            Assert.AreEqual(result, 1);
         }
 
-        [TestMethod]
+        [Test]
         public void TypeCoercer_Coerce_CoercesLong()
         {
-            string toCoerce = ((long) int.MaxValue + 1).ToString();
+            string toCoerce = ((long)int.MaxValue + 1).ToString();
 
             var result = coercer.Coerce(toCoerce);
 
-            Assert.IsInstanceOfType(result, typeof(long));
+            Assert.AreEqual(result, (long)int.MaxValue + 1);
         }
 
-        [TestMethod]
+        [Test]
         public void TypeCoercer_Coerce_CoercesString()
         {
             string toCoerce = "foo";
 
             var result = coercer.Coerce(toCoerce);
 
-            Assert.IsInstanceOfType(result, typeof(string));
+            Assert.AreEqual(result, "foo");
         }
     }
 }

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace Test.MapTo
 {
-    [TestClass]
+    [TestFixture]
     public class MapToDefaultTests
     {
-        [TestMethod]
+        [Test]
         public void MapTo_Default_ObjectOfType_DefaultsFieldCorrectly()
         {
             var defaultValues = new TestOptions
@@ -33,7 +28,7 @@ namespace Test.MapTo
             Assert.IsTrue(result.FlagField);
         }
 
-        [TestMethod]
+        [Test]
         public void MapTo_Default_ObjectOfType_DefaultsPropertyCorrectly()
         {
             var defaultValues = new TestOptions
@@ -56,7 +51,7 @@ namespace Test.MapTo
             Assert.IsTrue(result.FlagProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void MapTo_Default_AnonymousObject_DefaultsFieldCorrectly()
         {
             var defaultValues = new
@@ -79,7 +74,7 @@ namespace Test.MapTo
             Assert.IsTrue(result.FlagField);
         }
 
-        [TestMethod]
+        [Test]
         public void MapTo_Default_AnonymousObject_DefaultsPropertyCorrectly()
         {
             var defaultValues = new
@@ -102,7 +97,7 @@ namespace Test.MapTo
             Assert.IsTrue(result.FlagProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void MapTo_Default_AnonymousObject_IgnoresNonMatchingProperties()
         {
             var defaultValues = new

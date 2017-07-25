@@ -1,12 +1,12 @@
 ﻿using CLIMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Test.MapTo
 {
-    [TestClass]
+    [TestFixture]
     public class MapToFieldTests
     {
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_StringField()
         {
             var args = new[] { "-StringField", "foo" };
@@ -16,7 +16,7 @@ namespace Test.MapTo
             Assert.AreEqual("foo", mapped.StringField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_IntegerField()
         {
             var args = new[] { "-IntField", "1" };
@@ -26,7 +26,7 @@ namespace Test.MapTo
             Assert.AreEqual(1, mapped.IntField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_LongField()
         {
             var args = new[] { "-LongField", "123456789" };
@@ -36,7 +36,7 @@ namespace Test.MapTo
             Assert.AreEqual(123456789, mapped.LongField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_DoubleField()
         {
             var args = new[] { "-DoubleField", "3.14" };
@@ -46,7 +46,7 @@ namespace Test.MapTo
             Assert.AreEqual(3.14, mapped.DoubleField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_BooleanField_KeyValueStyle()
         {
             var args = new[] { "-BooleanField", "true" };
@@ -56,7 +56,7 @@ namespace Test.MapTo
             Assert.IsTrue(mapped.BooleanField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_BooleanField_FlagStyle()
         {
             var args = new[] { "-FlagField" };
@@ -66,7 +66,7 @@ namespace Test.MapTo
             Assert.IsTrue(mapped.FlagField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_BooleanField_FlagStyle_WithFollowingArgs()
         {
             var args = new[] { "-FlagField", "-StringField", "foo" };
@@ -77,7 +77,7 @@ namespace Test.MapTo
             Assert.AreEqual("foo", mapped.StringField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_BooleanField_FlagStyle_WithPrecedingArgs()
         {
             var args = new[] { "-StringField", "foo", "-FlagField" };
@@ -88,7 +88,7 @@ namespace Test.MapTo
             Assert.AreEqual("foo", mapped.StringField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_AllFieldValues()
         {
             var args = new[] { "-StringField", "foo", "-IntField", "1", "-LongField", "123456789", "-DoubleField", "3.14", "-BooleanField", "true", "-FlagField" };

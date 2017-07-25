@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using CLIMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Test.MapTo
 {
-    [TestClass]
+    [TestFixture]
     public class MapToInvalidInputTests
     {
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_InvalidAlias()
         {
             var args = new[] { "-s", "foo" };
@@ -22,7 +22,7 @@ namespace Test.MapTo
             Assert.AreEqual(null, mapped.StringField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_OutOfRangeInteger()
         {
             var args = new[] { "-IntField", };
@@ -33,7 +33,7 @@ namespace Test.MapTo
             Assert.AreEqual(mapped.IntField, default(int));
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_IgnoresBadKeys()
         {
             var args = new[] { "-Foo", "bar" };
@@ -43,7 +43,7 @@ namespace Test.MapTo
             Assert.IsNotNull(mapped);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_IgnoresBadValues()
         {
             var args = new[] { "-BooleanField", "1234" };
@@ -54,7 +54,7 @@ namespace Test.MapTo
             Assert.IsFalse(mapped.BooleanField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_IgnoresBadFlags()
         {
             var args = new[] { "-FooBar" };
@@ -64,7 +64,7 @@ namespace Test.MapTo
             Assert.IsNotNull(mapped);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_IgnoresUnPrefixedFlags()
         {
             var args = new[] { "BooleanField", "true", "FlagField" };

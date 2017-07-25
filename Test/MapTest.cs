@@ -1,20 +1,20 @@
 ﻿using CLIMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Test
 {
-    [TestClass]
+    [TestFixture]
     public class MapTest
     {
 	    private string[] args;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             args = new string[0];
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_AllStrings()
         {
 	        args = new[] {"--a", "foo", "--b", "bar"};
@@ -28,7 +28,7 @@ namespace Test
             Assert.AreEqual("bar", map["b"]);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_AllBooleans()
         {
 			args = new[] { "--a", "true", "--b", "false" };
@@ -42,7 +42,7 @@ namespace Test
             Assert.AreEqual(false, map["b"]);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_AllInts()
         {
 			args = new[] { "--a", "1", "--b", "2" };
@@ -56,7 +56,7 @@ namespace Test
             Assert.AreEqual(2, map["b"]);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_AllDoubles()
         {
 			args = new[] { "--a", "1.1", "--b", "2.2" };
@@ -70,7 +70,7 @@ namespace Test
             Assert.AreEqual(2.2, map["b"]);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_AllLong()
         {
             long a = (long)int.MaxValue + 1;
@@ -87,7 +87,7 @@ namespace Test
             Assert.AreEqual(b, map["b"]);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_LoneFlag()
         {
             args = new[] {"--flag"};
@@ -98,7 +98,7 @@ namespace Test
             Assert.IsTrue((bool) map["flag"]);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_LoneFlagFollowedByFlag()
         {
             args = new[] {"--flag", "--s", "foo"};
@@ -112,7 +112,7 @@ namespace Test
             Assert.AreEqual("foo", map["s"]);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_LoneFlagPrecededByOtherFlag()
         {
             args = new[] { "--s", "foo", "--flag" };
@@ -126,7 +126,7 @@ namespace Test
             Assert.AreEqual("foo", map["s"]);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_MixedTypes()
         {
             long e = (long)int.MaxValue + 1;
@@ -151,7 +151,7 @@ namespace Test
             Assert.AreEqual(e, map["e"]);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_Map_AlternatePrefix()
         {
 	        args = new[] { "_a", "1", "_b", "2" };

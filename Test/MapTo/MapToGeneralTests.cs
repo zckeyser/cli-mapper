@@ -1,12 +1,12 @@
 ﻿using CLIMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Test.MapTo
 {
-    [TestClass]
+    [TestFixture]
     public class MapToGeneralTests
     {
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_ReturnsObjectOfCorrectType()
         {
             var mapped = Mapper.MapTo<TestOptions>(new string[0]);

@@ -1,12 +1,12 @@
 ﻿using CLIMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Test.MapTo
 {
-    [TestClass]
+    [TestFixture]
     public class MapToPropertyTests
     {
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_StringProperty()
         {
             var args = new[] { "-StringProperty", "foo" };
@@ -16,7 +16,7 @@ namespace Test.MapTo
             Assert.AreEqual("foo", mapped.StringProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_IntegerProperty()
         {
             var args = new[] { "-IntProperty", "1" };
@@ -26,7 +26,7 @@ namespace Test.MapTo
             Assert.AreEqual(1, mapped.IntProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_LongProperty()
         {
             var args = new[] { "-LongProperty", "123456789" };
@@ -36,7 +36,7 @@ namespace Test.MapTo
             Assert.AreEqual(123456789, mapped.LongProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_DoubleProperty()
         {
             var args = new[] { "-DoubleProperty", "3.14" };
@@ -46,7 +46,7 @@ namespace Test.MapTo
             Assert.AreEqual(3.14, mapped.DoubleProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_BooleanProperty_KeyValueStyle()
         {
             var args = new[] { "-BooleanProperty", "true" };
@@ -56,7 +56,7 @@ namespace Test.MapTo
             Assert.IsTrue(mapped.BooleanProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_BooleanProperty_FlagStyle()
         {
             var args = new[] { "-FlagProperty" };
@@ -66,7 +66,7 @@ namespace Test.MapTo
             Assert.IsTrue(mapped.FlagProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_BooleanProperty_FlagStyle_WithFollowingArgs()
         {
             var args = new[] { "-FlagProperty", "-StringProperty", "foo" };
@@ -77,7 +77,7 @@ namespace Test.MapTo
             Assert.AreEqual("foo", mapped.StringProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_BooleanProperty_FlagStyle_WithPrecedingArgs()
         {
             var args = new[] { "-StringProperty", "foo", "-FlagProperty" };
@@ -88,7 +88,7 @@ namespace Test.MapTo
             Assert.AreEqual("foo", mapped.StringProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_AllPropertyValues()
         {
             var args = new[] { "-StringProperty", "foo", "-IntProperty", "1", "-LongProperty", "123456789", "-DoubleProperty", "3.14", "-BooleanProperty", "true", "-FlagProperty" };

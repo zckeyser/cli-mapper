@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CLIMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Test.MapTo
 {
-    [TestClass]
+    [TestFixture]
     public class MapToAliasTests
     {
         private static readonly long LongValue = ((long)int.MaxValue + 1);
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_StringField()
         {
             var args = new[] { "-s", "foo" };
@@ -28,7 +24,7 @@ namespace Test.MapTo
             Assert.AreEqual("foo", mapped.StringField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_IntField()
         {
             var args = new[] { "-i", "1" };
@@ -43,7 +39,7 @@ namespace Test.MapTo
             Assert.AreEqual(1, mapped.IntField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_LongField()
         {
             var args = new[] { "-l", LongValue.ToString() };
@@ -58,7 +54,7 @@ namespace Test.MapTo
             Assert.AreEqual(LongValue, mapped.LongField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_DoubleField()
         {
             var args = new[] { "-d", "1.1" };
@@ -73,7 +69,7 @@ namespace Test.MapTo
             Assert.AreEqual(1.1, mapped.DoubleField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_BooleanField()
         {
             var args = new[] { "-b", "true" };
@@ -88,7 +84,7 @@ namespace Test.MapTo
             Assert.IsTrue(mapped.BooleanField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_FlagField()
         {
             var args = new[] { "-f" };
@@ -103,7 +99,7 @@ namespace Test.MapTo
             Assert.IsTrue(mapped.FlagField);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_StringProperty()
         {
             var args = new[] { "-s", "foo" };
@@ -118,7 +114,7 @@ namespace Test.MapTo
             Assert.AreEqual("foo", mapped.StringProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_IntProperty()
         {
             var args = new[] { "-i", "1" };
@@ -133,7 +129,7 @@ namespace Test.MapTo
             Assert.AreEqual(1, mapped.IntProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_LongProperty()
         {
             var args = new[] { "-l", LongValue.ToString() };
@@ -148,7 +144,7 @@ namespace Test.MapTo
             Assert.AreEqual(LongValue, mapped.LongProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_DoubleProperty()
         {
             var args = new[] { "-d", "1.1" };
@@ -163,7 +159,7 @@ namespace Test.MapTo
             Assert.AreEqual(1.1, mapped.DoubleProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_BooleanProperty()
         {
             var args = new[] { "-b", "true" };
@@ -178,7 +174,7 @@ namespace Test.MapTo
             Assert.IsTrue(mapped.BooleanProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void Mapper_MapTo_Alias_FlagProperty()
         {
             var args = new[] { "-f" };
