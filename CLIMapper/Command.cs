@@ -246,7 +246,7 @@ namespace CLIMapper
                 throw new ArgumentException("args must have a length greater than 0");
             }
 
-            var commandString = args[0];
+            var commandString = args[0].ToLower();
             // get the arguments not including the command
             var nonCommandArgs = args.Skip(1).ToArray();
 
@@ -322,7 +322,7 @@ namespace CLIMapper
 
         private static string GetCommandString(Type t)
         {
-            return ((ICommand) Activator.CreateInstance(t)).Command;
+            return ((ICommand) Activator.CreateInstance(t)).Command.ToLower();
         }
     }
 }
