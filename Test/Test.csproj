@@ -51,7 +51,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="CommandTest.cs" />
     <Compile Include="Command\AliasCommandTest.cs" />
     <Compile Include="Command\BasicCommandTest.cs" />
     <Compile Include="Command\CommandTestClasses.cs" />
